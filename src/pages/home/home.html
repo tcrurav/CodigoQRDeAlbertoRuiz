@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>QR Code App</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item *ngFor="let user of users">
+    <p>{{user.name}}</p>
+  </ion-item>
+  <button ion-button block (click)="CreateUser()">Crear Usuario</button>
+  <button ion-button block (click)="GetAllUser()">Listar Usuarios</button>
+  <ion-item>
+    <ion-input type="type" placeholder="My QR data" [(ngModel)]="qrData"></ion-input>
+  </ion-item>
+  <button ion-button full icon-left (click)="createCode()">
+    <ion-icon name="barcode"></ion-icon>Create code
+  </button>
+  <button ion-button full icon-left (click)="scanCode()">
+    <ion-icon name="qr-scanner"></ion-icon>Scan code
+  </button>
+
+  <ion-card *ngIf="createdCode">
+    <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+    <ion-card-content>
+      <p>Value {{ createdCode }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      Result from Scan: {{ scannedCode }}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
